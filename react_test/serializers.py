@@ -5,4 +5,4 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('company_name', 'company_id', 'date_incorporation', 'address_1', 'address_2')
+        fields = ('pk', 'company_name', 'company_id', 'date_incorporation', 'address_1', 'address_2')

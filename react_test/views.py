@@ -24,7 +24,7 @@ def accounts_list(request):
 @api_view(['PUT', 'DELETE'])
 def accounts_detail(request, pk):
     try:
-        Account = Account.objects.get(company_name='aptvise')
+        Account = Account.objects.get(pk=pk)
     except Account.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 

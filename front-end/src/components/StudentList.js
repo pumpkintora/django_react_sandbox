@@ -1,55 +1,58 @@
-import React, { Component, Fragment } from 'react'
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
-import NewStudentForm from './NewStudentForm'
+import React, { Component } from "react";
+import { Table } from "reactstrap";
+import NewStudentModal from "./NewStudentModal";
 
-class NewStudentModal extends Component {
-    state = {
-        modal: false,
-    }
+import ConfirmRemovalModal from "./ConfirmRemovalModal";
 
-    toggle = () => {
-        this.setState((previous) => ({
-            modal: !previous.modal,
-        }))
-    }
-
-    render() {
-        const create = this.props.create
-
-        var title = 'Editing Student'
-        var button = <Button onClick={this.toggle}>Edit</Button>
-        if (create) {
-            title = 'Creating New Student'
-
-            button = (
-                <Button
-                    color="primary"
-                    className="float-right"
-                    onClick={this.toggle}
-                    style={{ minWidth: '200px' }}
-                >
-                    Create New
-                </Button>
-            )
-        }
-
-        return (
-            <Fragment>
-                {button}
-                <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
-
-                    <ModalBody>
-                        <NewStudentForm
-                            resetState={this.props.resetState}
-                            toggle={this.toggle}
-                            student={this.props.student}
-                        />
-                    </ModalBody>
-                </Modal>
-            </Fragment>
-        )
-    }
+class StudentList extends Component {
+  render() {
+    const students = this.props.students;
+    return (
+      <Table dark>
+        <thead>
+          <tr>
+            <th>Company name</th>
+            <th>Company id</th>
+            <th>Date of incorporation</th>
+            <th>Address 1</th>
+            <th>Address 2</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {!students || students.length <= 0 ? (
+            <tr>
+              <td colSpan="6" align="center">
+                <b>Ops, no one here yet</b>
+              </td>
+            </tr>
+          ) : (
+            students.map(student => (
+              <tr key={student.pk}>
+                <td>{student.company_name}</td>
+                <td>{student.company_id}</td>
+                <td>{student.date_incorporation}</td>
+                <td>{student.address_1}</td>
+                <td>{student.address_2}</td>
+                <td align="center">
+                  <NewStudentModal
+                    create={false}
+                    student={student}
+                    resetState={this.props.resetState}
+                  />
+                  &nbsp;&nbsp;
+                  <ConfirmRemovalModal
+                    pk={student.pk}
+                    resetState={this.props.resetState}
+                  />
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </Table>
+    );
+  }
 }
 
-export default NewStudentModal
+export default StudentList;
