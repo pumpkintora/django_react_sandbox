@@ -17,8 +17,8 @@ class NewStudentForm extends React.Component {
 
   componentDidMount() {
     if (this.props.student) {
-      const { pk, name, document, email, phone } = this.props.student;
-      this.setState({ pk, name, document, email, phone });
+      const { pk, company_name, company_id, date_incorporation, address_1, address_2 } = this.props.student;
+      this.setState({ pk, company_name, company_id, date_incorporation, address_1, address_2 });
     }
   }
 
@@ -50,46 +50,46 @@ class NewStudentForm extends React.Component {
     return (
       <Form onSubmit={this.props.student ? this.editStudent : this.createStudent}>
         <FormGroup>
-          <Label for="name">Name:</Label>
+          <Label for="company name">Name:</Label>
           <Input
             type="text"
-            name="name"
+            name="company name"
             onChange={this.onChange}
             value={this.defaultIfEmpty(this.state.company_name)}
           />
         </FormGroup>
         <FormGroup>
-          <Label for="email">ID:</Label>
+          <Label for="company id">ID:</Label>
           <Input
-            type="email"
-            name="email"
+            type="text"
+            name="company id"
             onChange={this.onChange}
             value={this.defaultIfEmpty(this.state.company_id)}
           />
         </FormGroup>
         <FormGroup>
-          <Label for="document">Date of incorporation:</Label>
+          <Label for="date">Date of incorporation:</Label>
           <Input
             type="text"
-            name="document"
+            name="date"
             onChange={this.onChange}
             value={this.defaultIfEmpty(this.state.date_incorporation)}
           />
         </FormGroup>
         <FormGroup>
-          <Label for="phone">Address 1:</Label>
+          <Label for="address 1">Address 1:</Label>
           <Input
             type="text"
-            name="phone"
+            name="address 1"
             onChange={this.onChange}
             value={this.defaultIfEmpty(this.state.address_1)}
           />
         </FormGroup>
         <FormGroup>
-          <Label for="phone">Address 2:</Label>
+          <Label for="address 2">Address 2:</Label>
           <Input
             type="text"
-            name="phone"
+            name="address 2"
             onChange={this.onChange}
             value={this.defaultIfEmpty(this.state.address_2)}
           />
