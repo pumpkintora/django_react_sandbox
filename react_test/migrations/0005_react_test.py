@@ -3,8 +3,6 @@
 from django.db import migrations
 
 def create_data(apps, schema_editor):
-    isReady = apps.ready()
-    print(isReady)
     Account = apps.get_model('react_test', 'Account')
     Account(company_name='aptvise', date_incorporation='2022 4 20', address_1='sg', address_2='my').save()
 
