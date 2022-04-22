@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Col, Container, Row } from 'reactstrap'
-import StudentList from './StudentList'
-import NewStudentModal from './NewStudentModal'
+import AccountList from './AccountList'
+import NewAccountModal from './NewAccountModal'
 
 import axios from 'axios'
 
@@ -9,19 +9,19 @@ import { API_URL } from '../constants'
 
 class Home extends Component {
     state = {
-        students: [],
+        accounts: [],
     }
 
     componentDidMount() {
         this.resetState()
     }
 
-    getStudents = () => {
-        axios.get(API_URL).then((res) => this.setState({ students: res.data }))
+    getAccounts = () => {
+        axios.get(API_URL).then((res) => this.setState({ accounts: res.data }))
     }
 
     resetState = () => {
-        this.getStudents()
+        this.getAccounts()
     }
 
     render() {
@@ -29,15 +29,15 @@ class Home extends Component {
             <Container style={{ marginTop: '20px' }}>
                 <Row>
                     <Col>
-                        <StudentList
-                            students={this.state.students}
+                        <AccountList
+                            accounts={this.state.accounts}
                             resetState={this.resetState}
                         />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <NewStudentModal
+                        <NewAccountModal
                             create={true}
                             resetState={this.resetState}
                         />

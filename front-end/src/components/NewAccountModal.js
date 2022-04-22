@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap'
-import NewStudentForm from './NewStudentForm'
+import NewAccountForm from './NewAccountForm'
 
-class NewStudentModal extends Component {
+class NewAccountModal extends Component {
     state = {
         modal: false,
     }
@@ -16,10 +16,10 @@ class NewStudentModal extends Component {
     render() {
         const create = this.props.create
 
-        var title = 'Editing Student'
+        var title = 'Editing Account'
         var button = <Button onClick={this.toggle}>Edit</Button>
         if (create) {
-            title = 'Creating New Student'
+            title = 'Creating New Account'
 
             button = (
                 <Button
@@ -40,10 +40,10 @@ class NewStudentModal extends Component {
                     <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
 
                     <ModalBody>
-                        <NewStudentForm
+                        <NewAccountForm
                             resetState={this.props.resetState}
                             toggle={this.toggle}
-                            student={this.props.student}
+                            account={this.props.account}
                         />
                     </ModalBody>
                 </Modal>
@@ -52,4 +52,4 @@ class NewStudentModal extends Component {
     }
 }
 
-export default NewStudentModal
+export default NewAccountModal

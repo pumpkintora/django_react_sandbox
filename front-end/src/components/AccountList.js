@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Table } from 'reactstrap'
-import NewStudentModal from './NewStudentModal'
+import NewAccountModal from './NewAccountModal'
 
 import ConfirmRemovalModal from './ConfirmRemovalModal'
 
-class StudentList extends Component {
+class AccountList extends Component {
     render() {
-        const students = this.props.students
+        const accounts = this.props.accounts
         return (
             <Table dark>
                 <thead>
@@ -20,29 +20,29 @@ class StudentList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {!students || students.length <= 0 ? (
+                    {!accounts || accounts.length <= 0 ? (
                         <tr>
                             <td colSpan="6" align="center">
                                 <b>Ops, no one here yet</b>
                             </td>
                         </tr>
                     ) : (
-                        students.map((student) => (
-                            <tr key={student.pk}>
-                                <td>{student.company_name}</td>
-                                <td>{student.company_id}</td>
-                                <td>{student.date_incorporation}</td>
-                                <td>{student.address_1}</td>
-                                <td>{student.address_2}</td>
+                        accounts.map((account) => (
+                            <tr key={account.pk}>
+                                <td>{account.company_name}</td>
+                                <td>{account.company_id}</td>
+                                <td>{account.date_incorporation}</td>
+                                <td>{account.address_1}</td>
+                                <td>{account.address_2}</td>
                                 <td align="center">
-                                    <NewStudentModal
+                                    <NewAccountModal
                                         create={false}
-                                        student={student}
+                                        account={account}
                                         resetState={this.props.resetState}
                                     />
                                     &nbsp;&nbsp;
                                     <ConfirmRemovalModal
-                                        pk={student.pk}
+                                        pk={account.pk}
                                         resetState={this.props.resetState}
                                     />
                                 </td>
@@ -55,4 +55,4 @@ class StudentList extends Component {
     }
 }
 
-export default StudentList
+export default AccountList
