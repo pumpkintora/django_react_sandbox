@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Login from "./pages/Login"
+import ThemeConfig from './theme';
 
 function App() {
 
@@ -15,7 +16,9 @@ function App() {
   // }
   return (
     <>
-      <Login />
+      <ThemeConfig>
+        <Login />
+      </ThemeConfig>
       {/* <Header /> */}
       {/* <Home /> */}
     </>
