@@ -32,17 +32,17 @@ class Home extends Component {
                         <AccountList
                             accounts={this.state.accounts}
                             resetState={this.resetState}
-                        />
-                    </Col>
-                </Row>
+                        />{' '}
+                    </Col>{' '}
+                </Row>{' '}
                 <Row>
                     <Col>
                         <NewAccountModal
                             create={true}
                             resetState={this.resetState}
-                        />
-                    </Col>
-                </Row>
+                        />{' '}
+                    </Col>{' '}
+                </Row>{' '}
             </Container>
         )
     }

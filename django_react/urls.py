@@ -19,6 +19,7 @@ from react_test import views
 # from django.conf.urls import url
 
 urlpatterns = [
+    path('/', index),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     re_path(r'^api/react_test/$', views.accounts_list),

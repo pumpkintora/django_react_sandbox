@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 # company
@@ -14,11 +14,8 @@ class Account(models.Model):
         return self.company_name
 
 # customer/employee
-class User(models.Model):
+class User(User):
     # unique
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField()
     telephone = models.CharField(max_length=100)
     dob = models.DateField("Date of Birth", auto_now_add=True)
     nationality = models.CharField(max_length=50)

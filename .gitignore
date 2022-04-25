@@ -13,7 +13,7 @@ db.sqlite3
 
 # cache
 /django_react/__pycache__
-
+/react_test/__pycache__
 # testing
 /coverage
 
