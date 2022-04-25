@@ -3,11 +3,11 @@ import { Link as RouterLink } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Card, Stack, Link, Container, Typography } from '@mui/material';
 // layouts
-import AuthLayout from '../layouts/AuthLayout';
+import AuthLayout from '../components/authentication/AuthLayout';
 // components
 import Page from '../components/Page';
-import { LoginForm } from '../sections/authentication/login';
-import AuthSocial from '../sections/authentication/AuthSocial';
+import LoginForm from '../components/authentication/LoginForm';
+import AuthSocial from '../components/authentication/AuthSocial';
 
 // ----------------------------------------------------------------------
 
