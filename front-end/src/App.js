@@ -1,27 +1,20 @@
-import React, { Component } from "react";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import Login from "./pages/Login"
+// routes
+import Router from './routes';
+// theme
 import ThemeConfig from './theme';
+import GlobalStyles from './theme/globalStyles'
+// components
+import ScrollToTop from './components/ScrollToTop';
+import { BaseOptionChartStyle } from './components/charts/BaseOptionChart'
 
 function App() {
-
-  // const login = () => {
-  //   axios
-  //     .post(API_URL, {
-  //       username: this.state.username,
-  //       password: this.state.password,
-  //     })
-  //     .then((res) => console.log(res.user))
-  // }
   return (
-    <>
-      <ThemeConfig>
-        <Login />
-      </ThemeConfig>
-      {/* <Header /> */}
-      {/* <Home /> */}
-    </>
+    <ThemeConfig>
+      <ScrollToTop />
+      <GlobalStyles />
+      <BaseOptionChartStyle />
+      <Router />
+    </ThemeConfig>
   );
 }
 

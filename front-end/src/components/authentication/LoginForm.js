@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
 // material
@@ -10,7 +10,7 @@ import {
     TextField,
     IconButton,
     InputAdornment,
-    FormControlLabel
+    FormControlLabel,
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // component
@@ -19,6 +19,8 @@ import Iconify from '../Iconify';
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
+    const emailRef = useRef();
+
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
@@ -35,7 +37,7 @@ export default function LoginForm() {
         },
         validationSchema: LoginSchema,
         onSubmit: () => {
-            navigate('/dashboard', { replace: true });
+            navigate('/', { replace: true });
         }
     });
 
@@ -45,11 +47,16 @@ export default function LoginForm() {
         setShowPassword((show) => !show);
     };
 
+    useEffect(() => {
+        emailRef.current.focus()
+    }, [])
+
     return (
         <FormikProvider value={formik}>
             <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                 <Stack spacing={3}>
                     <TextField
+                        ref={emailRef}
                         fullWidth
                         autoComplete="username"
                         type="email"
