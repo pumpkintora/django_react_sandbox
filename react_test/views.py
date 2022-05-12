@@ -3,23 +3,23 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 
 from .models import Account
 from .serializers import *
 
-@login_required
-def index(request):
-    return render(request, 'index.html')
+# @login_required
+# def index(request):
+#     return render(request, 'index.html')
 
-def log_in(request):
-    user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+def login(request):
+    user = authenticate(email=request.POST.get('email'), password=request.POST.get('password'))
     if user is not None:
         login(request, user)
         return Response(user=user)
     else:
         # invalid login
-        return Response(user=None) 
+        print('invalid login')
 
 @api_view(['GET', 'POST'])
 def accounts_list(request):

@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
+import AuthContext from "../../context/AuthProvider"
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
 // material
@@ -15,10 +16,15 @@ import {
 import { LoadingButton } from '@mui/lab';
 // component
 import Iconify from '../Iconify';
+// to connect to django
+import axios from 'axios'
+import { LOGIN_URL } from '../../constants'
+
 
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
+    const { setAuth } = useContext(AuthContext)
     const emailRef = useRef();
 
     const navigate = useNavigate();
@@ -36,8 +42,23 @@ export default function LoginForm() {
             remember: true
         },
         validationSchema: LoginSchema,
-        onSubmit: () => {
-            navigate('/', { replace: true });
+        onSubmit: async () => {
+            try {
+                const res = await axios.post(
+                    LOGIN_URL,
+                    JSON.stringify(this.values),
+                    { 
+                        headers: { 'Content-Type': 'application/json' },
+                        withCredentials: true
+                    }
+                )
+                console.log(JSON.stringify(res?.data))
+                const accessToken = res?.data?.accessToken;
+                const roles = res?.data?.roles;
+                navigate('/', { replace: true });
+            } catch (e) {
+                console.log(e)
+            }
         }
     });
 

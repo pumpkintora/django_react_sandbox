@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { AuthProvider } from './context/AuthProvider';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,7 +11,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
     <HelmetProvider>
         <BrowserRouter>
-            <App />
+            <AuthProvider>
+                <App />
+            </AuthProvider>
         </BrowserRouter>
     </HelmetProvider>,
     document.getElementById('root')
